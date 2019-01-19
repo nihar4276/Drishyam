@@ -1,0 +1,22 @@
+{
+  "name": "basic",
+  "version": "1.0.0",
+  "description": "basic mean app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "khamar",
+  "license": "ISC",
+ "dependencies": {
+    "angular": "^1.5.8",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "fs": "0.0.1-security",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7",
+    "url": "^0.11.0",
+    "time": "^0.11.4",
+    "url": "^0.11.0"
+  }
+}
