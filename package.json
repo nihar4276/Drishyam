@@ -8,14 +8,14 @@
   },
   "author": "khamar",
   "license": "ISC",
- "dependencies": {
+  "dependencies": {
     "angular": "^1.5.8",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "fs": "0.0.1-security",
+    "mongoose": "^5.4.5",
     "morgan": "^1.7.0",
     "path": "^0.12.7",
-    "url": "^0.11.0",
     "time": "^0.11.4",
     "url": "^0.11.0"
   }
