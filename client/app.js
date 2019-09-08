@@ -68,6 +68,12 @@ app.controller("loginController", function($scope, $location, $rootScope, $resou
     $scope.url2 = "http://localhost:3000/video?username=branch2@synd.com";
 
 
+    // $scope.url = "http://206.189.141.49:3000/video?username="+un;
+    // $scope.url1 = "http://206.189.141.49:3000/video?username=branch1@synd.com";
+    // $scope.url2 = "http://206.189.141.49:3000/video?username=branch2@synd.com";
+
+
+
     var ranks=$resource('/ranks');
     ranks.query(function(result){
       $scope.ranks = result[0].data;
