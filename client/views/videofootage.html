@@ -1,0 +1,85 @@
+<div id="viewport">
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <img src="../images/drishyam.png" class="image-size"><br>   <br>
+            <ul class="nav">
+                    <li>
+                            <a href="#" style="text-align:center; border: 1px solid white">
+                            <i class="zmdi zmdi-face"> </i>HELLO !!  {{username | uppercase}}
+                            </a>
+                          </li>
+            <li>
+              <a href="#/dashboard">
+                <i class="zmdi zmdi-view-dashboard"></i>Global Leaderboard
+              </a>
+            </li>
+            <li>
+              <a href="#/archieve">
+                <i class="zmdi zmdi-link"></i> Incidents
+              </a>
+            </li>
+            <li>
+              <a href="#/videofootage">
+                <i class="zmdi zmdi-videocam"></i> Live video Footage
+              </a>
+            </li>
+                      </ul>
+        </div>
+        <!-- Content -->
+        <div id="content">
+          <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <h2>LIVE VIDEO FOOTAGE</h2>
+            </div>
+          </nav>
+
+
+
+
+                    <div class="row" ng-if="username=='central@synd.com'">
+
+                            <div class="column">
+                                  <!-- <div class="container-login100" > -->
+                              <div class="card">
+                                      <span><u><b>Branch 1 Footage</b></u></span>
+                                      <video id="videoPlayer" controls style="height:450px;" loop>
+                                              <source src={{url1}} type="video/mp4">
+                                            </video>
+                              </div>
+                                      </div>
+                            <div class="column" style="margin-left:350px;">
+                                    <div class="card">
+                                            <span><u><b>Branch 2 Footage</b></u></span>
+                                            <video id="videoPlayer" controls style="height:450px;" loop>
+                                                    <source src={{url2}} type="video/mp4">
+                                                  </video>
+                                    </div>
+                                          </div>
+                  
+                                      </div>
+
+                                      <div class="row" ng-if="username!='central@synd.com'">
+
+                                            <div class="column">
+                                                  <!-- <div class="container-login100" > -->
+                                              <div class="card">
+                                                      <span>{{username | uppercase}}</span>
+                                                      <video id="videoPlayer" controls style="height:450px;" loop>
+                                                              <source src={{url}} type="video/mp4">
+                                                            </video>
+                                              </div>
+                                                  
+                                              
+                                              
+                                                      </div>
+                                            <div class="column">
+                                                  <!-- <div class="container-login100" > -->
+                                              
+                                                          <!-- </div> -->
+                                                          </div>
+                                  
+                                                      </div>                                      
+
+
+                </div>
+      </div>

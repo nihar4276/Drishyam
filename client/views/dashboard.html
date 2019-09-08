@@ -1,0 +1,63 @@
+<div id="viewport">
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <img src="../images/drishyam.png" class="image-size"><br>   <br>
+
+            <ul class="nav">                
+            <li>
+              <a href="#" style="text-align:center; border: 1px solid white">
+              <i class="zmdi zmdi-face"> </i>HELLO !!  {{username | uppercase}}
+              </a>
+            </li>
+            <li>
+              <a href="#/dashboard">
+                <i class="zmdi zmdi-view-dashboard"></i>Global Leaderboard
+              </a>
+            </li>
+            <li>
+              <a href="#/archieve">
+                <i class="zmdi zmdi-link"></i> Incidents
+              </a>
+            </li>
+            <li>
+              <a href="#/videofootage">
+                <i class="zmdi zmdi-videocam"></i> Live video Footage
+              </a>
+            </li>
+                      </ul>
+        </div>
+        <!-- Content -->
+
+        <div id="content">
+
+            <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <h2>GLOBAL LEADERBOARD</h2>
+            </div>
+        
+          </nav>
+          <div class="container">
+           
+                <table>
+                        <tr style="font-size:20px;border: 3px solid;">
+                         <th>Rank</th>
+                          <th>Brach Name</th>
+                          <th>Incidents Reported</th>
+                          <th>Incidents Resolved</th>
+                          <th>Score</th>
+                        </tr>
+                        <br>    
+                        <tr ng-repeat="item in ranks | orderBy:'-Score'">
+                            <td style="font-size:25px;text-align:center;"><b>{{$index + 1}}</b></td>
+                          <td>{{item.bankName | limitTo:7 | uppercase}}</td>
+                          <td>{{item.reportsCount}}</td>
+                          <td>{{item.resolveCount}}</td>
+                          <td>{{item.Score}}</td>
+
+                        </tr>
+                      
+                      </table>
+
+          </div>
+        </div>
+      </div>

@@ -1,0 +1,60 @@
+<div id="viewport">
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <img src="../images/drishyam.png" class="image-size"><br>   <br>
+            <ul class="nav">
+                    <li>
+                            <a href="#" style="text-align:center; border: 1px solid white">
+                            <i class="zmdi zmdi-face"> </i>HELLO !!  {{username | uppercase}}
+                            </a>
+                          </li>
+            <li>
+              <a href="#/dashboard">
+                <i class="zmdi zmdi-view-dashboard"></i>Global Leaderboard
+              </a>
+            </li>
+            <li>
+              <a href="#/archieve">
+                <i class="zmdi zmdi-link"></i> Incidents
+              </a>
+            </li>
+            <li>
+              <a href="#/videofootage">
+                <i class="zmdi zmdi-videocam"></i> Live video Footage
+              </a>
+            </li>
+                      </ul>
+        </div>
+        <!-- Content -->
+        <div id="content">
+          <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <h2>INCIDENTS ARCHIEVE</h2>
+            </div>
+          </nav>
+          <div class="container-fluid">
+           
+            Search : <input placeholder="Global Search"  style="border:2px solid grey;margin:10px;width:150px;" ng-model="searchText"></input>
+                <table>
+                        <tr style="font-size:20px;border: 3px solid;">
+                          <th></th>
+                          <th>Brach Name</th>
+                          <th>Incident Report Time</th>
+                          <th>Incident Resolved Time</th>
+                          <th>Description</th>
+                          <th>Score</th>
+                        </tr>
+                        <br>    
+                        <tr ng-repeat = "item in incidents | filter:searchText">
+                          <td>{{$index + 1}}</td>
+                          <td>{{item.bankName | limitTo:7 | uppercase   }}</td>
+                          <td>{{item.reportTime}}</td>
+                          <td>{{item.resolveTime}}</td>
+                          <td>{{item.description}}</td>
+                          <td>{{item.status}}</td>
+                        </tr>
+                      </table>
+
+          </div>
+        </div>
+      </div>

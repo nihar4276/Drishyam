@@ -3,9 +3,8 @@ var mongoose = require('mongoose'),
 
 var loginSchema = new Schema ({
     email           : {type: String, index: {unique: true, dropDups: true}},
-    password        : String,   
-    username        : String,
-    group           : String
+    password        : String,
+    type            : String
 });
 
 module.exports.login = mongoose.model('Login', loginSchema);
