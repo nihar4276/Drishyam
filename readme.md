@@ -1,6 +1,6 @@
 ## Drishyam
 
-Steps to Run the application:
+Steps to Run the web-application:
 
 1) Install MongoDB
 
@@ -29,3 +29,21 @@ npm server.js
 ```
 http:localhost:3000
 ```
+9) Login as Head branch member using 
+  ```
+  email : central@synd.com
+  password: central123
+```
+  Login as subordinate branch user using
+  ```
+  email : branch1@synd.com
+  password  : password
+```
+  or
+```
+  email : branch2@synd.com
+  password  : password
+```
+
+
+
