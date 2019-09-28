@@ -18,7 +18,7 @@ var path = require('path')
 const TelegramBot = require('node-telegram-bot-api');
 const token = '939575970:AAEZRyw0hxb9cy1gDKZ83UHaz8fHIH0DVNA';
 const bot = new TelegramBot(token, { polling: true });
-
+var request = require('request');
 
 //connection to mongo db
 mongoose.Promise = global.Promise;
@@ -133,6 +133,20 @@ app.get('/incident', function (req, res) {
   }
 })
 
+app.get('/incident-status', function (req, res) {
+  var url_parts = url.parse(req.url, true);
+  var username = url_parts.query.username;
+
+  Incident.find({ bankName: username, status: "Active" }, function (err, result) {
+    if (err) {
+      res.send([{ success: false, reason: err }]);
+    }
+    else {
+      res.send([{ success: true, data: result }]);
+    }
+  })
+})
+
 app.post('/incident', function (req, res) {
 
 
@@ -215,6 +229,7 @@ app.post('/incident', function (req, res) {
 
 app.post('/incident-resolve', function (req, res) {
   var id = req.body._id;
+  console.log(id)
   Incident.find({ _id: id }, function (err, result) {
     if (err) {
       res.send({ success: false, reason: err });
@@ -291,19 +306,53 @@ bot.onText(/\/echo (alerts.+)/, (msg, match) => {
 
 
 chat_ids = [410100721]
+id_to_resolve = "5d74fa008289802de9f609db"
 // Listen for any kind of message. There are different kinds of
 // messages.
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
   console.log(msg)
 
+
+  // alert check
   if (msg.text.toLowerCase().includes("alerts") || msg.text.toLowerCase().includes("alert") || msg.text.toLowerCase().includes("alert de")) {
-    bot.sendPhoto(chatId, "./uploads/image.jpg", { caption: "Here we go ! \nThis is just a caption " });
-    bot.sendMessage(chatId, "The Ambience was disturbed because of trash ,plastic ,disposable cups ,were detected in the office environment in room 124");
+
+    request.get(
+      'http://206.189.141.49:3000/incident-status?username=branch1@synd.com',
+      function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+          console.log(body)
+        }
+      }
+    );
+
+
+    bot.sendPhoto(chatId, "./uploads/first.jpg", { caption: " Image captured at room 124 of Manipal Branch" });
+
+    bot.sendMessage(chatId, "The Ambience was disturbed because of trash ,plastic ,disposable cups ,were detected in the office environment in room 124 of Manipal Branch", {
+      "reply_markup": {
+        "keyboard": [["Resolve"]]
+      }
+    });
+  }
+  else if (msg.text.toLowerCase().includes("resolve")) {
+
+    request.post(
+      'http://206.189.141.49:3000/incident-resolve',
+      { json: { "_id": id_to_resolve } },
+      function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+          if (body.success) {
+            bot.sendMessage(chatId, "Alert successfully resolved!");
+          }
+        }
+      }
+    );
+
   }
   else
     // send a message to the chat acknowledging receipt of their message
-    bot.sendMessage(chatId, 'Received your message ' + msg.from.first_name + " \n Rest for now amigo, We have no new alerts for ya! ");
+    bot.sendMessage(chatId, 'Received your message ' + msg.from.first_name + " \nRest for now amigo, We have no new alerts for ya! ");
 
-    
+
 });
